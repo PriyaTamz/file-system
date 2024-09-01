@@ -5,7 +5,9 @@ const app = express();
 
 function getCurrentDateTime() {
     const now = new Date();
-    return now.toISOString().replace(/[:.]/g, '-');
+    const istOffset = 5.5 * 60 * 60 * 1000; 
+    const istTime = new Date(now.getTime() + istOffset);
+    return istTime.toString().replace(/[:.]/g, '-');
 }
 
 app.post('/create-file', (req, res) => {
