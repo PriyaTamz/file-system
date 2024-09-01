@@ -5,13 +5,13 @@ const app = express();
 
 function getCurrentDateTime() {
     const now = new Date();
-    return now.toString().replace(/:/g, '-');
+    return now.toISOString().replace(/[:.]/g, '-');
 }
 
 app.post('/create-file', (req, res) => {
     const currentDateTime = getCurrentDateTime();
     const fileName = `files/${currentDateTime}.txt`;
-    const content = `Timestamp: ${getCurrentDateTime()}`;
+    const content = `Timestamp: ${currentDateTime}`;
 
     fs.writeFile(fileName, content, err => {
         if (err) {
